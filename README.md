@@ -19,6 +19,12 @@ Clone repo.
 
 ## Usage
 
+- Browse to starting directory where you would like the app to start its search.
+- After starting directory is selected, click "Seek".
+- The dialogue box will then display how many node_modules directories have been found and report function execution time.
+- You are now ready to deal destruction! Click "Destroy" and watch as the app destroys all node_modules directories it can find in the selected path!
+- The dialogue box will display how many node_modules directories have been destroyed and report function execution time.
+
 ![App Pic](./images/Capture-1.PNG)
 
 ## Contributing
