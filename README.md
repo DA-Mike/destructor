@@ -19,7 +19,7 @@ Clone repo.
 
 ## Usage
 
-N/A
+[App Pic](./images/Capture-1.PNG)
 
 ## Contributing
 ### How to Contribute:
