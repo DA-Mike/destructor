@@ -42,7 +42,7 @@ class App:
             justify="center",
             background="black",
         ).grid(column=2, row=2, pady=10)
-        ttk.Label(self.mainframe, text="Enter Starting Directory", padding="5").grid(
+        ttk.Label(self.mainframe, text="Starting Directory", padding="5").grid(
             column=1, row=3, sticky=tk.E
         )
 
@@ -110,11 +110,12 @@ class App:
 
         global pop
         pop = tk.Toplevel(self.window)
-        pop.geometry("300x300")
-        pop.config(bg="white")
+        pop.geometry("300x200")
+        ph2 = tk.PhotoImage(file=getenv("ICON_PATH"))
+        pop.iconphoto(False, ph2)
         label = tk.Label(
             pop,
-            text="Are you sure? This will permanently delete all node_modules directories in this path.",
+            text="Are you sure? \n This will permanently delete all node_modules directories in this path.",
             font=("Arial", 10),
             wraplength=200,
         )
