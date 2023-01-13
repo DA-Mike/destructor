@@ -107,7 +107,9 @@ class App:
         if option == "yes":
             result = d.destroy(self.folder_path.get())
             self.msg_box.config(state="normal")
-            self.msg_box.insert(tk.INSERT, "\n" + result[0] + "\n" + result[1])
+            self.msg_box.insert(
+                tk.INSERT, "\n" + "------------------" + "\n" + result[0] + "\n" + result[1]
+            )
             self.msg_box.config(state="disabled")
 
     def seek_handler(self):
@@ -115,7 +117,9 @@ class App:
 
         result = d.seek(self.folder_path.get())
         self.msg_box.config(state="normal")
-        self.msg_box.insert(tk.INSERT, "\n" + result[0] + "\n" + result[1])
+        self.msg_box.insert(
+            tk.INSERT, "\n" + "------------------" + "\n" + result[0] + "\n" + result[1]
+        )
         self.msg_box.config(state="disabled")
 
     def verify(self):
