@@ -17,7 +17,7 @@ class App:
         self.ph1 = tk.PhotoImage(file=getenv("ICON_PATH"))
         self.window.iconphoto(False, self.ph1)
         self.window.title("DESTRUCTOR")
-        self.window.geometry("720x625")
+        self.window.geometry("690x625")
 
         self.mainframe = ttk.Frame(self.window, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0, sticky=(tk.NSEW))
@@ -58,7 +58,7 @@ class App:
         self.frame1.grid(column=2, row=4, sticky=tk.NSEW, pady=10)
         self.seek = ttk.Button(
             self.frame1, text="Seek", padding=5, command=lambda: self.seek_handler()
-        ).grid(column=1, row=1, sticky=tk.W, padx=100)
+        ).grid(column=1, row=1, sticky=tk.W, padx=90)
         self.destroy = ttk.Button(
             self.frame1, text="Destroy", padding=5, command=lambda: self.verify()
         ).grid(column=4, row=1, stick=tk.E, padx=50)
