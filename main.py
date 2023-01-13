@@ -30,7 +30,7 @@ class App:
         self.help_menu.add_command(
             label="Instructions", command=lambda: self.instructions()
         )
-        self.help_menu.add_command(label="About...", command="")
+        self.help_menu.add_command(label="About...", command=lambda: self.about())
         self.menu_bar.add_cascade(label="Help", menu=self.help_menu)
 
         self.mainframe = ttk.Frame(self.window, padding="3 3 12 12")
@@ -108,7 +108,8 @@ class App:
             result = d.destroy(self.folder_path.get())
             self.msg_box.config(state="normal")
             self.msg_box.insert(
-                tk.INSERT, "\n" + "------------------" + "\n" + result[0] + "\n" + result[1]
+                tk.INSERT,
+                "\n" + "------------------" + "\n" + result[0] + "\n" + result[1],
             )
             self.msg_box.config(state="disabled")
 
@@ -157,7 +158,7 @@ class App:
         self.folder_path.set(folder_selected)
 
     def instructions(self):
-        """Displays app instructions"""
+        """Displays app instructions in modal"""
 
         global pop
         pop = tk.Toplevel(self.window)
@@ -172,6 +173,30 @@ class App:
 - You are now ready to deal destruction! Click "Destroy" and watch as the app destroys all node_modules directories it can find in the selected path!\n
 - The dialogue box will display how many node_modules directories have been destroyed and report function execution time.
                 """,
+            font=("Arial", 8),
+            wraplength=250,
+            justify="left",
+        )
+        label.pack(pady=20)
+        frame = tk.Frame(pop)
+        frame.pack(pady=10)
+        cancel_button = tk.Button(
+            frame, text="Cancel", command=lambda: self.choice("no"), fg="black"
+        )
+        cancel_button.grid(row=2, column=2, padx=10)
+        cancel_button.config(padx=10)
+
+    def about(self):
+        """Displays app info in modal"""
+
+        global pop
+        pop = tk.Toplevel(self.window)
+        pop.geometry("300x150")
+        ph2 = tk.PhotoImage(file=getenv("ICON_PATH"))
+        pop.iconphoto(False, ph2)
+        label = tk.Label(
+            pop,
+            text="DESTRUCTOR v1.0 \n \n \n Created by Mike Rugh",
             font=("Arial", 8),
             wraplength=250,
             justify="left",
