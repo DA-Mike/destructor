@@ -17,7 +17,21 @@ class App:
         self.ph1 = tk.PhotoImage(file=getenv("ICON_PATH"))
         self.window.iconphoto(False, self.ph1)
         self.window.title("DESTRUCTOR")
-        self.window.geometry("690x625")
+        self.window.geometry("690x640")
+
+        self.menu_bar = tk.Menu()
+        self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
+        self.file_menu.add_separator()
+        self.file_menu.add_command(label="Exit", command=self.window.quit)
+        self.menu_bar.add_cascade(label="File", menu=self.file_menu)
+        self.window.config(menu=self.menu_bar)
+
+        self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
+        self.help_menu.add_command(
+            label="Instructions", command=lambda: self.instructions()
+        )
+        self.help_menu.add_command(label="About...", command="")
+        self.menu_bar.add_cascade(label="Help", menu=self.help_menu)
 
         self.mainframe = ttk.Frame(self.window, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0, sticky=(tk.NSEW))
@@ -137,6 +151,35 @@ class App:
         """Gets directory path from user"""
         folder_selected = filedialog.askdirectory()
         self.folder_path.set(folder_selected)
+
+    def instructions(self):
+        """Displays app instructions"""
+
+        global pop
+        pop = tk.Toplevel(self.window)
+        pop.geometry("300x375")
+        ph2 = tk.PhotoImage(file=getenv("ICON_PATH"))
+        pop.iconphoto(False, ph2)
+        label = tk.Label(
+            pop,
+            text="""
+- Browse to starting directory where you would like the app to start its search. After starting directory is selected, click "Seek".\n
+- The dialogue box will then display how many node_modules directories have been found and report function execution time.\n
+- You are now ready to deal destruction! Click "Destroy" and watch as the app destroys all node_modules directories it can find in the selected path!\n
+- The dialogue box will display how many node_modules directories have been destroyed and report function execution time.
+                """,
+            font=("Arial", 8),
+            wraplength=250,
+            justify="left",
+        )
+        label.pack(pady=20)
+        frame = tk.Frame(pop)
+        frame.pack(pady=10)
+        cancel_button = tk.Button(
+            frame, text="Cancel", command=lambda: self.choice("no"), fg="black"
+        )
+        cancel_button.grid(row=2, column=2, padx=10)
+        cancel_button.config(padx=10)
 
 
 App()
