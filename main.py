@@ -63,7 +63,10 @@ class App:
         self.folder_path = tk.StringVar()
         self.path = tk.StringVar()
         self.path_entry = tk.Entry(
-            self.mainframe, textvariable=self.folder_path, justify="center"
+            self.mainframe,
+            textvariable=self.folder_path,
+            justify="center",
+            state="disabled",
         )
         self.path_entry.grid(column=2, row=3, pady=10, sticky=tk.EW)
         self.path_entry.focus()
