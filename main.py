@@ -1,8 +1,12 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog
-from utils.destructor import Destructor as d
+from os import getenv
+from dotenv import load_dotenv
 from PIL import ImageTk, Image
+from utils import destructor as d
+
+load_dotenv()
 
 
 class App:
@@ -10,9 +14,7 @@ class App:
 
     def __init__(self):
         self.window = tk.Tk()
-        self.ph1 = tk.PhotoImage(
-            file=r"C:\\Users\\t3k_p\\Documents\\projects\\destructor\\destructor\\images\\explosion.png"
-        )
+        self.ph1 = tk.PhotoImage(file=getenv("ICON_PATH"))
         self.window.iconphoto(False, self.ph1)
         self.window.title("DESTRUCTOR")
         self.window.geometry("720x625")
@@ -89,7 +91,7 @@ class App:
 
         pop.destroy()
         if option == "yes":
-            result = d.destroy(self, self.folder_path.get())
+            result = d.destroy(self.folder_path.get())
             self.msg_box.config(state="normal")
             self.msg_box.insert(tk.INSERT, "\n" + result[0] + "\n" + result[1])
             self.msg_box.config(state="disabled")
@@ -97,7 +99,7 @@ class App:
     def seek_handler(self):
         """Initiates seek function, insterts results into text module"""
 
-        result = d.seek(self, self.folder_path.get())
+        result = d.seek(self.folder_path.get())
         self.msg_box.config(state="normal")
         self.msg_box.insert(tk.INSERT, "\n" + result[0] + "\n" + result[1])
         self.msg_box.config(state="disabled")
