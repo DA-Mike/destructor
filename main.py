@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import os.path
 from tkinter import filedialog
 from os import getenv
 from dotenv import load_dotenv
@@ -37,8 +38,8 @@ class App:
         self.mainframe.grid(column=0, row=0, sticky=(tk.NSEW))
         self.window.columnconfigure(0, weight=1)
         self.window.rowconfigure(0, weight=1)
-
-        self.elmo = Image.open("./images/elmo.jpg")
+        self.script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.elmo = Image.open(os.path.join(self.script_dir, r"images" + "\elmo.jpg"))
         self.elmo = self.elmo.resize((300, 150))
         self.elmo_obj = ImageTk.PhotoImage(self.elmo)
 
