@@ -15,7 +15,15 @@ Tired of node_modules bloat but have too many projects locally? Need to seek the
 
 ## Installation
 
-Clone repo.
+### Two separate methods:
+
+#### Create .exe
+- Clone repo
+- pip install pyinstaller
+- pyinstaller main.spec
+
+#### OR
+- Download the .exe in from the dist folder
 
 ## Usage
 
