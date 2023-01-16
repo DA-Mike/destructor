@@ -2,20 +2,23 @@ import tkinter as tk
 import tkinter.ttk as ttk
 import os.path
 from tkinter import filedialog
-from os import getenv
-from dotenv import load_dotenv
 from PIL import ImageTk, Image
 from utils import destructor as d
-
-load_dotenv()
 
 
 class App:
     """This is the application and GUI"""
 
+    def get_path(self, filename):
+        if hasattr(sys, "_MEIPASS"):
+            return os.path.join(sys._MEIPASS, filename)
+        else:
+            return filename
+
     def __init__(self):
         self.window = tk.Tk()
-        self.ph1 = tk.PhotoImage(file=getenv("ICON_PATH"))
+        self.script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.ph1 = tk.PhotoImage(file=os.path.join(self.script_dir, r"images" + "\explosion.png"))
         self.window.iconphoto(False, self.ph1)
         self.window.title("DESTRUCTOR")
         self.window.geometry("690x640")
@@ -38,7 +41,6 @@ class App:
         self.mainframe.grid(column=0, row=0, sticky=(tk.NSEW))
         self.window.columnconfigure(0, weight=1)
         self.window.rowconfigure(0, weight=1)
-        self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.elmo = Image.open(os.path.join(self.script_dir, r"images" + "\elmo.jpg"))
         self.elmo = self.elmo.resize((300, 150))
         self.elmo_obj = ImageTk.PhotoImage(self.elmo)
@@ -99,10 +101,10 @@ class App:
             state="disabled",
             fg="black",
         )
-        self.msg_box.grid(column=2, row=2, sticky=tk.W, pady=30)
+        self.msg_box.grid(column=2, row=2, sticky=tk.NSEW, pady=30)
 
         self.window.mainloop()
-
+    
     def choice(self, option):
         """Handles destroy/deletion of node_modules in selected path
         after user selects 'yes' from verification modal"""
